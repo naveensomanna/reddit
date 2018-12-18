@@ -16,8 +16,7 @@
       </div>
       <div class="rightBottom-container">
 
-        <p v-if="btn"><a  href="https://www.reddit.com/api/v1/authorize?client_id=AA-Rd4eR9DpMIQ&response_type=code&redirect_uri=http://localhost:4041/&scope=identity&duration=permanent&state=sandeep">{{btnvalue}}</a></p>
-        <p v-else> <a  href="" @click="logIn">{{btnvalue}}</a></p>
+        <p><a  href="https://www.reddit.com/api/v1/authorize?client_id=AA-Rd4eR9DpMIQ&response_type=code&redirect_uri=http://localhost:4041/home&scope=identity&duration=permanent&state=sandeep">Login With Reditt</a></p>
       </div>
       <div class="standing-icon">
         <img src="../assets/reddit.png" />
@@ -28,82 +27,23 @@
 </template>
 
 <script>
-    import  axios from 'axios';
 
     export default {
   name: 'Register',
     data(){
       return{
-          params:{},
-          tmp:'',
-          vars:'',
-          access_token:'',
-          user:{},
-          btnvalue:'Sign With Reddit',
-          btn:''
+
       }
     },
     methods:{
-      checking() {
-          if (window.location.search.substr(1)) {
-              this.btn = false;
-              this.vars=window.location.search.substr(1).split('&');
-              this.vars.forEach(v=>{
-                  this.tmp=v.split('=');
-                  if(this.tmp.length===2){
-                      this.params[this.tmp[0]]=this.tmp[1];
-                  }
-              });
-              this.btnvalue="Login With Reddit";
 
-          } else {
-              this.btn = true;
-          }
-      },
-        logIn(){
-            this.$router.push({path:'/home'});
-          },
-        getAccessToken(){
-            let token=JSON.parse(JSON.stringify(this.params));
-            const form=new FormData();
-            form.append('grant_type',"authorization_code");
-            form.append('code',`${token.code}`);
-            form.append('redirect_uri','http://localhost:4041/');
-            const username='AA-Rd4eR9DpMIQ';
-            const password='yvEHRbKGWilUHuHwL0lgGIZb8jU';
-            const basicAuth = 'Basic ' + btoa(username + ':' + password);
-            axios.post(`https://www.reddit.com/api/v1/access_token`,form, {
-                    headers: {
-                        'Authorization':  basicAuth,
-                        'Content-Type': 'application/x-www-form-urlencoded',
-
-                    },
-
-
-                }
-
-
-            ).then(response =>{
-                this.access_token=response.data;
-
-            }).catch(err=> console.log("error",err));
-        }
 
     },
 mounted(){
-    this.checking();
 
 },
         watch:{
-            access_token(){
-                sessionStorage.setItem('token',JSON.stringify(this.access_token.access_token));
 
-            },
-            btn(){
-                if(this.btn===false){
-                    this.getAccessToken();
-                }
-            }
         }
 }
 </script>
