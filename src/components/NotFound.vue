@@ -7,20 +7,14 @@
                         <i class="fab fa-reddit-alien" id="movement"></i>
                     </div>
                     <div>
-                        <h2>reddit</h2>
+                        <h2>404</h2>
                     </div>
                 </div>
                 <div class="content-bottom">
-                    <p>Authentication Via Reddit</p>
+                    <p>Not Found</p>
                 </div>
             </div>
-            <div class="rightBottom-container">
-
-                <p>
-                    <a href="https://www.reddit.com/api/v1/authorize?client_id=AA-Rd4eR9DpMIQ&response_type=code&redirect_uri=http://localhost:8080&scope=identity&duration=permanent&state=sandeep">Login
-                        With Reditt</a></p>
-            </div>
-            <div class="standing-icon">
+            <div class="standing-icon">¬
                 <img src="../assets/reddit.png"/>
             </div>
         </div>
